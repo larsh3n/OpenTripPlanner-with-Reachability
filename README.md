@@ -73,39 +73,14 @@ of [project governance](http://docs.opentripplanner.org/en/dev-2.x/Governance/) 
 
 ## Reachability Feature
 
-The feature added in this fork is a reachability visualization. 
+The feature added in this fork is a reachability visualization. The idea is to visualize the reachability of a target location via all kinds of transportation. In a predefined radius locations are sampled uniformly. Connections from these sample locations towards the target location are calculated by the OTP routing algorithm for a specified time. The fastest travel time of a location is displayed as a color at each sampled location.
 
+### Setup
 
-OTP https://docs.opentripplanner.org/en/latest/
-GTFS (Format für ÖPNV) https://gtfs.org/documentation/overview/#
-Busse und Bahnen in DE https://gtfs.de/en/feeds/
-OpenStreetMap Downloads https://download.geofabrik.de/
+Clone this repo and follow the instructions above to build the jar with maven. Afterwards you need to find GTFS data for public transit data and map data for your area. I used the following data sources:
 
-Added Features
+Public Transit in Germany: https://gtfs.de/en/feeds/
+OpenStreetMap Data (I used NRW data because of RAM size issues): https://download.geofabrik.de/
 
-    Visualize Reachability to target location
-        Add Button “Check Reachability” to CLI
-        Input: target location l, time t, radius r in km, sample size x
-        In area of radius, sample x points uniformly
-        Calculate connection from all sample locations to target
-        take fastest travel time c
-        Collect each c and determine connection quality color from color scale (e. g. green to red)
-            map travel time to color scale
-        Output: Add colored points to CLI at every sample location to visualize their reachability score
-
-Plan
-
-
-
-Idea: Implement reachability visualization
-
-    given target location, range, arrival/departure time
-    for sampled start locations in range show reachability
-    heatmap or isolines
-    sample queries to target point
-    compute quality of connections
-        average travel time and number of stops
-    visualize in UI
-    compare travel time of public transport to car travel time or bike travel time
-
-
+Follow these steps to start your local server with a basic GUI: https://docs.opentripplanner.org/en/latest/Basic-Tutorial/#simple-one-step-server
+As soon as you select a location as your target on the map, the reachability to that location will be displayed. At the moment only walks are considered for fastest paths as there is still some debugging to do. Also the radius and sample size are hardcoded because of the experimental nature of this project.
