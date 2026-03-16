@@ -70,3 +70,42 @@ of [project governance](http://docs.opentripplanner.org/en/dev-2.x/Governance/) 
 
 - [awesome-transit](https://github.com/MobilityData/awesome-transit) Community list of transit APIs,
   apps, datasets, research, and software.
+
+## Reachability Feature
+
+The feature added in this fork is a reachability visualization. 
+
+
+OTP https://docs.opentripplanner.org/en/latest/
+GTFS (Format für ÖPNV) https://gtfs.org/documentation/overview/#
+Busse und Bahnen in DE https://gtfs.de/en/feeds/
+OpenStreetMap Downloads https://download.geofabrik.de/
+
+Added Features
+
+    Visualize Reachability to target location
+        Add Button “Check Reachability” to CLI
+        Input: target location l, time t, radius r in km, sample size x
+        In area of radius, sample x points uniformly
+        Calculate connection from all sample locations to target
+        take fastest travel time c
+        Collect each c and determine connection quality color from color scale (e. g. green to red)
+            map travel time to color scale
+        Output: Add colored points to CLI at every sample location to visualize their reachability score
+
+Plan
+
+
+
+Idea: Implement reachability visualization
+
+    given target location, range, arrival/departure time
+    for sampled start locations in range show reachability
+    heatmap or isolines
+    sample queries to target point
+    compute quality of connections
+        average travel time and number of stops
+    visualize in UI
+    compare travel time of public transport to car travel time or bike travel time
+
+
