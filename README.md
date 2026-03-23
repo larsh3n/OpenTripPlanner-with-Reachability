@@ -73,7 +73,7 @@ of [project governance](http://docs.opentripplanner.org/en/dev-2.x/Governance/) 
 
 ## Reachability Feature
 
-The feature added in this fork is a reachability visualization. The idea is to visualize the reachability of a target location via all kinds of transportation. In a predefined radius locations are sampled uniformly. Connections from these sample locations towards the target location are calculated by the OTP routing algorithm for a specified time. The fastest travel time of a location is displayed as a color at each sampled location.
+The feature added in this fork is a reachability visualization. The idea is to visualize the reachability of a target location via all kinds of transportation. In a predefined radius locations are sampled uniformly. Connections from these sample locations towards the target location are calculated by the OTP routing algorithm for a specified time. The fastest travel time of a location is displayed as a color at each sampled location. Currently the arbitrary cutoffs for different fastest travel times are defined in 'useReachability.ts' with green dots under 25 minutes, yellow between 25 and 45 minutes, red for travel time longer than 45 minutes.
 
 ### Setup
 
@@ -83,4 +83,9 @@ Public Transit in Germany: https://gtfs.de/en/feeds/
 OpenStreetMap Data (I used NRW data because of RAM size issues): https://download.geofabrik.de/
 
 Follow these steps to start your local server with a basic GUI: https://docs.opentripplanner.org/en/latest/Basic-Tutorial/#simple-one-step-server
-As soon as you select a location as your target on the map, the reachability to that location will be displayed. At the moment only walks are considered for fastest paths as there is still some debugging to do. Also the radius and sample size are hardcoded because of the experimental nature of this project.
+
+The basic GUI lets you plan journeys like any other journey planning tool. To enable the reachability feature you have to build the client yourself with 'npm run dev' in the client folder. Then open the extended GUI following the link provided in the console output after building.
+
+In the extended GUI as soon as you select a location as your target on the map, the reachability to that location will be displayed. At the moment only walks are considered for fastest paths as there is still some debugging to do. Also the radius and sample size are hardcoded because of the experimental nature of this project.
+
+The extension consists of two util files in 'samplePoints.ts' and 'runTripQuery.ts' where the starting points are sampled and where each query for the GraphQL API are prepared. In 'useReachability.ts' the hook is managed, which triggers when the journey target location is changed. In 'MapView.tsx' further changes were made to visualize the results.
