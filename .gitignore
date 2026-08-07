@@ -39,6 +39,7 @@ node_modules/
 target/
 /graphs
 test-data/
+dev-data/
 
 # for local dev only
 /src/test/resources/speedtest/travelSearch-results-*.csv
