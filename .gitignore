@@ -38,7 +38,7 @@ gen-py/
 node_modules/
 target/
 /graphs
-test-data/
+dev-data/
 dev-data/
 
 # for local dev only
